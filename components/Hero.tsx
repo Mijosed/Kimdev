@@ -34,7 +34,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl sm:text-2xl text-gray-300 mb-8"
           >
-            KIMDEV conçoit et développe des sites web et applications sur mesure 
+           <span className="font-semibold">KIMDEV</span> conçoit et développe des sites web et applications sur mesure 
             qui propulsent votre entreprise vers de nouveaux sommets.
           </motion.p>
           <motion.div
@@ -53,7 +53,7 @@ const Hero = () => {
             <a
               href="#contact"
               onClick={(e) => handleScroll(e, 'contact')}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 inline-flex items-center justify-center gap-2"
+              className="bg-linear-to-r from-sky-600 to-sky-700 hover:bg-sky-500 text-white font-bold py-3 px-8 rounded-lg transition duration-300 inline-flex items-center justify-center gap-2"
             >
               Contactez-nous
             </a>

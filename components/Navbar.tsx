@@ -52,7 +52,7 @@ const Navbar = () => {
               <Link 
                 href="#contact" 
                 onClick={(e) => handleScroll(e, 'contact')}
-                className="text-white px-3 py-2 rounded-md text-sm font-medium bg-blue-600 hover:bg-blue-700"
+                className="text-white px-3 py-2 rounded-md text-sm font-medium bg-linear-to-r from-sky-600 to-sky-700 hover:bg-sky-700"
               >
                 Contact
               </Link>
@@ -111,7 +111,7 @@ const Navbar = () => {
           <Link
             href="#contact"
             onClick={(e) => handleScroll(e, 'contact')}
-            className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium bg-blue-600 hover:bg-blue-700"
+            className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium bg-linear-to-r from-sky-600 to-sky-700 hover:bg-sky-700"
           >
             Contact
           </Link>

@@ -1,9 +1,64 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Building2 } from 'lucide-react';
+import { Phone, Mail, Building2 } from 'lucide-react';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    company: '',
+    email: '',
+    phone: '',
+    project: ''
+  });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('loading');
+    setErrorMessage('');
+
+    try {
+      console.log('Envoi des données:', formData);
+
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      console.log('Réponse du serveur:', data); 
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Une erreur est survenue lors de l\'envoi du message');
+      }
+
+      setStatus('success');
+      setFormData({
+        name: '',
+        company: '',
+        email: '',
+        phone: '',
+        project: ''
+      });
+    } catch (error) {
+      console.error('Erreur complète:', error);
+      setStatus('error');
+      setErrorMessage(error instanceof Error ? error.message : 'Une erreur est survenue');
+    }
+  };
+
   return (
     <section id="contact" className="py-20 bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,7 +81,7 @@ const Contact = () => {
             className="space-y-6"
           >
             <div className="flex items-center space-x-4">
-              <div className="text-blue-500">
+              <div className="text-sky-500">
                 <Building2 size={24} />
               </div>
               <div>
@@ -35,7 +90,7 @@ const Contact = () => {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="text-blue-500">
+              <div className="text-sky-500">
                 <Phone size={24} />
               </div>
               <div>
@@ -44,7 +99,7 @@ const Contact = () => {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="text-blue-500">
+              <div className="text-sky-500">
                 <Mail size={24} />
               </div>
               <div>
@@ -60,14 +115,17 @@ const Contact = () => {
             viewport={{ once: true }}
             className="bg-gray-800 p-6 rounded-lg"
           >
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="name" className="block text-white mb-2">Nom du contact *</label>
                 <input
                   type="text"
                   id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
                   placeholder="Votre nom"
                 />
               </div>
@@ -76,8 +134,11 @@ const Contact = () => {
                 <input
                   type="text"
                   id="company"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
                   placeholder="Nom de votre entreprise"
                 />
               </div>
@@ -86,8 +147,11 @@ const Contact = () => {
                 <input
                   type="email"
                   id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
                   placeholder="votre@email.com"
                 />
               </div>
@@ -96,8 +160,11 @@ const Contact = () => {
                 <input
                   type="tel"
                   id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
                   placeholder="+33 6 XX XX XX XX"
                 />
               </div>
@@ -105,17 +172,33 @@ const Contact = () => {
                 <label htmlFor="project" className="block text-white mb-2">Votre projet *</label>
                 <textarea
                   id="project"
+                  name="project"
+                  value={formData.project}
+                  onChange={handleChange}
                   required
                   rows={4}
-                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
                   placeholder="Décrivez votre projet en quelques mots..."
                 ></textarea>
               </div>
+              {status === 'error' && (
+                <div className="text-red-500 text-sm bg-red-500/10 p-3 rounded-lg">
+                  {errorMessage}
+                </div>
+              )}
+              {status === 'success' && (
+                <div className="text-green-500 text-sm bg-green-500/10 p-3 rounded-lg">
+                  Message envoyé avec succès ! Nous vous recontacterons rapidement.
+                </div>
+              )}
               <button
                 type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300"
+                disabled={status === 'loading'}
+                className={`w-full bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-500 hover:to-sky-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ${
+                  status === 'loading' ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
               >
-                Envoyer
+                {status === 'loading' ? 'Envoi en cours...' : 'Envoyer'}
               </button>
             </form>
           </motion.div>
@@ -125,4 +208,4 @@ const Contact = () => {
   );
 };
 
-export default Contact; 
+export default Contact;

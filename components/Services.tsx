@@ -58,7 +58,7 @@ const Services = () => {
                 viewport={{ once: true, margin: "-50px" }}
                 className="bg-gray-800 p-6 rounded-lg hover:bg-gray-700 transition duration-300"
               >
-                <div className="text-blue-500 mb-4">
+                <div className="text-sky-500 mb-4">
                   <Icon size={32} />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
