@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { MessageCircle, Briefcase } from 'lucide-react';
 
 const Hero = () => {
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
@@ -13,7 +12,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-800 via-blue-700 to-gray-900">
+    <section id="hero" className="min-h-screen flex items-center justify-center bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -47,9 +46,8 @@ const Hero = () => {
             <a
               href="#services"
               onClick={(e) => handleScroll(e, 'services')}
-              className="bg-white hover:bg-gray-100 text-blue-600 font-bold py-3 px-8 rounded-lg transition duration-300 inline-flex items-center justify-center gap-2"
+              className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 inline-flex items-center justify-center gap-2 border border-gray-700"
             >
-             
               Nos Services
             </a>
             <a
@@ -57,7 +55,6 @@ const Hero = () => {
               onClick={(e) => handleScroll(e, 'contact')}
               className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 inline-flex items-center justify-center gap-2"
             >
-              
               Contactez-nous
             </a>
           </motion.div>

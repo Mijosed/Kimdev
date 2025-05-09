@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin, Building2 } from 'lucide-react';
 
 const Contact = () => {
   return (
@@ -15,7 +15,7 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Contactez-nous</h2>
-          <p className="text-gray-400 text-lg">Nous sommes à votre écoute</p>
+          <p className="text-gray-400 text-lg">Nous sommes à votre écoute pour concrétiser votre projet</p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <motion.div
@@ -26,6 +26,13 @@ const Contact = () => {
             className="space-y-6"
           >
             <div className="flex items-center space-x-4">
+              <div className="text-blue-500">
+                <Building2 size={24} />
+              </div>
+              <div>
+                <h3 className="text-white font-bold">KIMDEV</h3>
+                <p className="text-gray-400">Votre partenaire digital</p>
+              </div>
             </div>
             <div className="flex items-center space-x-4">
               <div className="text-blue-500">
@@ -55,27 +62,53 @@ const Contact = () => {
           >
             <form className="space-y-4">
               <div>
-                <label htmlFor="name" className="block text-white mb-2">Nom</label>
+                <label htmlFor="name" className="block text-white mb-2">Nom complet *</label>
                 <input
                   type="text"
                   id="name"
+                  required
                   className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Votre nom"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-white mb-2">Email</label>
+                <label htmlFor="company" className="block text-white mb-2">Nom de l'entreprise *</label>
+                <input
+                  type="text"
+                  id="company"
+                  required
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Nom de votre entreprise"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-white mb-2">Email *</label>
                 <input
                   type="email"
                   id="email"
+                  required
                   className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="votre@email.com"
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-white mb-2">Message</label>
-                <textarea
-                  id="message"
-                  rows={4}
+                <label htmlFor="phone" className="block text-white mb-2">Numéro de téléphone *</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  required
                   className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="+33 6 XX XX XX XX"
+                />
+              </div>
+              <div>
+                <label htmlFor="project" className="block text-white mb-2">Votre projet *</label>
+                <textarea
+                  id="project"
+                  required
+                  rows={4}
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  placeholder="Décrivez votre projet en quelques mots..."
                 ></textarea>
               </div>
               <button
