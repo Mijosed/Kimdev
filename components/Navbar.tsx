@@ -12,7 +12,7 @@ const Navbar = () => {
     const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false); // Close menu after clicking a link
+      setIsMenuOpen(false); 
     }
   };
 
@@ -52,7 +52,7 @@ const Navbar = () => {
               <Link 
                 href="#contact" 
                 onClick={(e) => handleScroll(e, 'contact')}
-                className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                className="text-white px-3 py-2 rounded-md text-sm font-medium bg-blue-600 hover:bg-blue-700"
               >
                 Contact
               </Link>
@@ -93,7 +93,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden`}>
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-900/95 backdrop-blur-sm">
+        <div className="px-2 h-screen text-center pt-2 pb-3 space-y-3 sm:px-3 bg-gray-900/95 backdrop-blur-sm">
           <Link
             href="#hero"
             onClick={(e) => handleScroll(e, 'hero')}
@@ -111,7 +111,7 @@ const Navbar = () => {
           <Link
             href="#contact"
             onClick={(e) => handleScroll(e, 'contact')}
-            className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium bg-blue-600 hover:bg-blue-700"
           >
             Contact
           </Link>

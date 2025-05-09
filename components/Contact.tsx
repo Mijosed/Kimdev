@@ -62,7 +62,7 @@ const Contact = () => {
           >
             <form className="space-y-4">
               <div>
-                <label htmlFor="name" className="block text-white mb-2">Nom complet *</label>
+                <label htmlFor="name" className="block text-white mb-2">Nom du contact *</label>
                 <input
                   type="text"
                   id="name"
@@ -107,7 +107,7 @@ const Contact = () => {
                   id="project"
                   required
                   rows={4}
-                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Décrivez votre projet en quelques mots..."
                 ></textarea>
               </div>
